@@ -10,8 +10,6 @@ export type NavLinkProps = LinkProps & {
 
 export default function NavLink(props: NavLinkProps) {
   const pathName = usePathname()
-  console.log(pathName)
-  console.log(props.href)
   return (
     <Link
       data-current={pathName === props.href}
