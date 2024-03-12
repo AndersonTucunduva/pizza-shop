@@ -14,7 +14,7 @@ export default function Orders() {
   return (
     <div>
       <div className="flex flex-col gap-4">
-        <h1 className="text-3xl font-bold tracking-tighter">Pedidos</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Pedidos</h1>
 
         <div className="mb-3 mt-3 flex flex-col gap-2">
           <OrderTableFilters />
