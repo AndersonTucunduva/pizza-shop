@@ -15,7 +15,7 @@ export default function Header() {
             <Home className="h-4 w-4" />
             Inicio
           </NavLink>
-          <NavLink href="/orders">
+          <NavLink href="/dashboard/orders">
             <UtensilsCrossed className="h-4 w-4" />
             Pedidos
           </NavLink>
