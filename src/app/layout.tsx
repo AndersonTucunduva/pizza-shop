@@ -4,6 +4,8 @@ import { Toaster } from 'sonner'
 import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
 
+import Providers from './providers'
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -25,8 +27,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Toaster richColors />
-          {children}
+          <Providers>
+            <Toaster richColors />
+            {children}
+          </Providers>
         </ThemeProvider>
       </body>
     </html>

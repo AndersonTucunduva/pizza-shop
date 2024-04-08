@@ -9,6 +9,8 @@ import { Label } from '@/components/ui/label'
 import { toast } from 'sonner'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { useMutation } from '@tanstack/react-query'
+import { registerRestaurant } from '@/app/api/register-restaurant'
 
 const signUpForm = z.object({
   restaurantName: z.string(),
@@ -27,18 +29,28 @@ export default function SignUp() {
     formState: { isSubmitting },
   } = useForm<SignUpForm>()
 
+  const { mutateAsync: registerRestaurantFn } = useMutation({
+    mutationFn: registerRestaurant,
+  })
+
   async function handleSignUp(data: SignUpForm) {
+    console.log('entrou na função')
     try {
-      console.log(data)
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      console.log('entrou no try')
+      await registerRestaurantFn({
+        restaurantName: data.restaurantName,
+        managerName: data.managerName,
+        email: data.email,
+        phone: data.phone,
+      })
       toast.success('Restaurante  cadastrado com sucesso', {
         action: {
           label: 'Login',
-          onClick: () => router.push('/auth/sign-in'),
+          onClick: () => router.push(`/auth/sign-in?email=${data.email}`),
         },
       })
     } catch {
-      toast.error('Erro ao ccadastrar restaurante')
+      toast.error('Erro ao cadastrar restaurante')
     }
   }
 
